@@ -79,7 +79,7 @@ const Converter = () => {
     <div className="min-h-screen bg-black text-white p-6">
       <div className="w-full">
         <div className=" mt-2.5 text-center mb-12">
-          <h1 className=" mt-2.5 text-7xl font-bold text-blue-400">
+          <h1 className=" mt-6 bg:text-6xl text-6xl font-bold text-blue-400">
             <span className="text-amber-500">C.</span>Converter
           </h1>
           <p className="text-gray-400 text-xl mt-3">Live currency exchange with history</p>
