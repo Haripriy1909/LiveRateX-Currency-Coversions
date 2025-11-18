@@ -3,20 +3,13 @@ import { Link } from 'react-router-dom';
 
 const HomeBottomtext = () => {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-6 mt-24 px-4">
-      <Link
-        to="/Charts"
-        className=" px-[14vh] py-[5vh] text-3xl sm:text-5xl lg:text-5xl uppercase font-bold text-white border-2  border-yellow-200 rounded-full transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-teal-300 hover:text-black shadow-lg"
-      >
-        Graph
-      </Link>
-
-      <Link
-        to="/about"
-        className="px-[14vh] py-[5vh]  text-3xl sm:text-4xl lg:text-5xl uppercase font-bold text-white border-2 border-yellow-200 rounded-full transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-gradient-to-r hover:from-purple-400 hover:to-blue-400 hover:text-black shadow-lg"
-      >
-        About
-      </Link>
+    <div className="flex flex-wrap items-center justify-center gap-6 mt-24 ">
+     <div className='lg:border-3 border-2 hover:border-[#D3FD50] hover:text-[#D3FD50] lg:h-44 flex items-center px-9 pt-0 lg:px-14 border-white rounded-full uppercase'>
+        <Link className='text-[6vw] lg:mt-6' to='/Charts'>Graph</Link>
+      </div>
+      <div className='lg:border-3 border-2 hover:border-[#D3FD50] hover:text-[#D3FD50]  lg:h-44 flex items-center px-9 pt-0  border-white rounded-full uppercase'>
+        <Link className='text-[6vw] lg:mt-6' to='/About'>About</Link>
+      </div>
     </div>
   );
 };
