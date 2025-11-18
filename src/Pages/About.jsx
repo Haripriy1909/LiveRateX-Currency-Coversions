@@ -78,7 +78,7 @@ const About = () => {
   return (
     <div className="relative py-24 px-6 min-h-screen bg-gradient-to-br from-black via-gray-900 to-black ">
       <div className="relative z-10 max-w-7xl mx-auto text-center">
-        <h2 className="text-[6vw]  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-md mb-10">
+        <h2 className="text-[6vw] sm:text-6xl sm:mt-1.5  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-md mb-10">
           Why Use Our Currency Converter?
         </h2>
 
