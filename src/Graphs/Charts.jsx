@@ -206,7 +206,7 @@ const Chart = () => {
           </button>
         </header>
 
-        <Chart data={chartValues} />
+        <Charts data={chartValues} />
 
       
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -224,3 +224,4 @@ const Chart = () => {
 };
 
 export default Charts;
+
