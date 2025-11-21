@@ -3,13 +3,68 @@ import { Link } from 'react-router-dom';
 
 const HomeBottomtext = () => {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-6 mt-24 ">
-     <div className='lg:border-3 border-2 hover:border-[#D3FD50] hover:text-[#D3FD50] lg:h-44 flex items-center px-9 pt-0 lg:px-14 border-white rounded-full uppercase'>
-        <Link className='text-[6vw] lg:mt-6' to='/Charts'>Graph</Link>
+    <div className="flex flex-wrap items-center justify-center gap-6 mt-12 sm:mt-24 px-4">
+      
+    
+      <div className="
+        border-2 
+        hover:border-[#D3FD50] 
+        hover:text-[#D3FD50] 
+        lg:h-40 
+        flex 
+        items-center 
+        justify-center
+        px-6 sm:px-12 
+        py-3 sm:py-4
+        border-white 
+        rounded-full 
+        uppercase
+        transition-all duration-300
+      ">
+        <Link
+          className="
+            text-2xl
+            sm:text-3xl
+            md:text-4xl
+            lg:text-5xl
+            font-semibold
+          "
+          to="/Charts"
+        >
+          Graph
+        </Link>
       </div>
-      <div className='lg:border-3 border-2 hover:border-[#D3FD50] hover:text-[#D3FD50]  lg:h-44 flex items-center px-9 pt-0  border-white rounded-full uppercase'>
-        <Link className='text-[6vw] lg:mt-6' to='/About'>About</Link>
+
+    
+      <div className="
+        border-2 
+        hover:border-[#D3FD50] 
+        hover:text-[#D3FD50] 
+        lg:h-40 
+        flex 
+        items-center 
+        justify-center
+        px-8 sm:px-12 
+        py-3 sm:py-4
+        border-white 
+        rounded-full 
+        uppercase
+        transition-all duration-300
+      ">
+        <Link
+          className="
+            text-2xl
+            sm:text-3xl
+            md:text-4xl
+            lg:text-5xl
+            font-semibold
+          "
+          to="/About"
+        >
+          About
+        </Link>
       </div>
+
     </div>
   );
 };
