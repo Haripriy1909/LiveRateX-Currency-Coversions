@@ -7,14 +7,14 @@ const HomeBottomtext = () => {
       
     
       <div className="
-        border-2 
+         border-2 
         hover:border-[#D3FD50] 
         hover:text-[#D3FD50] 
         lg:h-40 
         flex 
         items-center 
         justify-center
-        px-6 sm:px-12 
+        px-8 sm:px-12 
         py-5 sm:py-4
         border-white 
         rounded-full 
@@ -37,7 +37,7 @@ const HomeBottomtext = () => {
 
     
       <div className="
-        border-2 
+          border-2 
         hover:border-[#D3FD50] 
         hover:text-[#D3FD50] 
         lg:h-40 
@@ -70,4 +70,5 @@ const HomeBottomtext = () => {
 };
 
 export default HomeBottomtext;
+
 
