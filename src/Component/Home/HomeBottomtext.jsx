@@ -15,7 +15,7 @@ const HomeBottomtext = () => {
         items-center 
         justify-center
         px-6 sm:px-12 
-        py-3 sm:py-4
+        py-5 sm:py-4
         border-white 
         rounded-full 
         uppercase
@@ -45,7 +45,7 @@ const HomeBottomtext = () => {
         items-center 
         justify-center
         px-8 sm:px-12 
-        py-3 sm:py-4
+        py-5 sm:py-4
         border-white 
         rounded-full 
         uppercase
@@ -70,3 +70,4 @@ const HomeBottomtext = () => {
 };
 
 export default HomeBottomtext;
+
