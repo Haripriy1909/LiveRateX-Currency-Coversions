@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const currencies = [
-  { name: "India", code: "INR", symbol: "₹", flag: "🇮🇳", baseRate: 83.25 },
+  { name: "India", code: "INR", symbol: "₹", flag: "🇮🇳", baseRate: 90.37 },
   { name: "United States", code: "USD", symbol: "$", flag: "🇺🇸", baseRate: 1 },
   { name: "Australia", code: "AUD", symbol: "A$", flag: "🇦🇺", baseRate: 1.52 },
   { name: "United Kingdom", code: "GBP", symbol: "£", flag: "🇬🇧", baseRate: 0.79 },
@@ -81,7 +81,6 @@ const Charts = ({ data }) => {
   if (data.length < 2)
     return <p className="text-gray-400 text-xl md:text-2xl">Loading chart...</p>;
 
-
   const width = 800;
   const height = 200;
   const padding = 40;
@@ -92,8 +91,7 @@ const Charts = ({ data }) => {
 
   const points = data
     .map((value, i) => {
-      const x =
-        padding + (i / (data.length - 1)) * (width - padding * 2);
+      const x = padding + (i / (data.length - 1)) * (width - padding * 2);
       const y =
         height -
         padding -
@@ -111,12 +109,7 @@ const Charts = ({ data }) => {
       <div className="relative w-full h-56 md:h-64 bg-black/20 rounded-lg p-2 md:p-4 overflow-hidden">
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
           <defs>
-            <pattern
-              id="grid"
-              width="40"
-              height="30"
-              patternUnits="userSpaceOnUse"
-            >
+            <pattern id="grid" width="40" height="30" patternUnits="userSpaceOnUse">
               <path
                 d="M40 0 L0 0 0 30"
                 fill="none"
@@ -127,15 +120,9 @@ const Charts = ({ data }) => {
           </defs>
 
           <rect width="100%" height="100%" fill="url(#grid)" />
-          <polyline
-            fill="none"
-            stroke="#06b6d4"
-            strokeWidth="3"
-            points={points}
-          />
+          <polyline fill="none" stroke="#06b6d4" strokeWidth="3" points={points} />
         </svg>
 
-      
         <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-400 -ml-10 md:-ml-14">
           <span>₹{max.toFixed(2)}</span>
           <span>₹{((max + min) / 2).toFixed(2)}</span>
@@ -187,7 +174,6 @@ const Chart = () => {
     <div className="min-h-screen bg-black p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
 
-       
         <header className="text-center mb-10">
           <h1 className="mt-10 sm:mt-20 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
             <span className="text-red-500 font-serif">Live</span> Currency Exchange Rates
@@ -206,9 +192,9 @@ const Chart = () => {
           </button>
         </header>
 
+        
         <Charts data={chartValues} />
 
-      
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {currencies.map((currency) => (
             <CurrencyCard
@@ -223,5 +209,4 @@ const Chart = () => {
   );
 };
 
-export default Charts;
-
+export default Chart;
