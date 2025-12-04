@@ -38,7 +38,10 @@ const CurrencyCard = ({ currency, rateData }) => {
 
         <div className={`flex items-center gap-1 ${color}`}>
           <span className="text-lg">{symbol}</span>
-          <span className="font-semibold">{sign}{Math.abs(change).toFixed(2)}%</span>
+          <span className="font-semibold">
+            {sign}
+            {Math.abs(change).toFixed(2)}%
+          </span>
         </div>
       </div>
 
@@ -54,13 +57,15 @@ const CurrencyCard = ({ currency, rateData }) => {
         <div className="flex justify-between">
           <span className="text-gray-400">Live Rate:</span>
           <span className="text-white font-mono">
-            {currency.symbol}{formatCurrency(rate, currency.code)}
+            {currency.symbol}
+            {formatCurrency(rate, currency.code)}
           </span>
         </div>
         <div className="flex justify-between">
           <span className="text-gray-400">24h Change:</span>
           <span className={color}>
-            {sign}{Math.abs(change).toFixed(2)}%
+            {sign}
+            {Math.abs(change).toFixed(2)}%
           </span>
         </div>
       </div>
@@ -77,7 +82,7 @@ const CurrencyCard = ({ currency, rateData }) => {
 
 
 
-const Charts = ({ data }) => {
+const LiveChart = ({ data }) => {
   if (data.length < 2)
     return <p className="text-gray-400 text-xl md:text-2xl">Loading chart...</p>;
 
@@ -132,6 +137,7 @@ const Charts = ({ data }) => {
     </div>
   );
 };
+
 
 
 
@@ -192,8 +198,8 @@ const Chart = () => {
           </button>
         </header>
 
-        
-        <Charts data={chartValues} />
+     
+        <LiveChart data={chartValues} />
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {currencies.map((currency) => (
@@ -209,5 +215,4 @@ const Chart = () => {
   );
 };
 
-export default Charts;
-
+export default Chart;
