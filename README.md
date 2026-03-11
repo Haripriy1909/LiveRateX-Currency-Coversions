@@ -171,7 +171,7 @@ http://localhost:5173
 
 # 👨‍💻 Author
 
-Developed by **Your Name**
+Developed by **Haripriy Darji**
 
 ---
 
