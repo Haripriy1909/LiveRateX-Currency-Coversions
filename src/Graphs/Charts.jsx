@@ -7,14 +7,23 @@ const currencies = [
   { name: "United Kingdom", code: "GBP", symbol: "£", flag: "🇬🇧", baseRate: 0.79 },
 ];
 
+const generateRates = () => {
+  const newRates = {};
+  currencies.forEach(({ code, baseRate }) => {
+    const fluctuation = (Math.random() - 0.5) * 0.02;
+    const rate = baseRate * (1 + fluctuation);
+    const change = ((rate - baseRate) / baseRate) * 100;
+    newRates[code] = { rate, change };
+  });
+  return newRates;
+};
+
 const formatCurrency = (value, code) =>
   ["JPY", "INR"].includes(code) ? value.toFixed(2) : value.toFixed(4);
 
 const getChangeIndicator = (change) => {
-  if (change > 0)
-    return { symbol: "↗", color: "text-green-400", sign: "+" };
-  if (change < 0)
-    return { symbol: "↘", color: "text-red-400", sign: "" };
+  if (change > 0) return { symbol: "↗", color: "text-green-400", sign: "+" };
+  if (change < 0) return { symbol: "↘", color: "text-red-400", sign: "" };
   return { symbol: "→", color: "text-gray-400", sign: "" };
 };
 
@@ -24,7 +33,7 @@ const CurrencyCard = ({ currency, rateData }) => {
   const { symbol, color, sign } = getChangeIndicator(change);
 
   return (
-    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 hover:scale-[1.03] transition-all duration-300 w-full">
+    <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20 shadow-lg hover:scale-[1.04] hover:bg-white/15 transition-all duration-300 w-full">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <span className="text-2xl md:text-3xl">{currency.flag}</span>
@@ -46,7 +55,9 @@ const CurrencyCard = ({ currency, rateData }) => {
       </div>
 
       <div className="bg-black/40 rounded-lg p-3 md:p-4 mb-3 text-center">
-        <div className="text-xs md:text-sm text-gray-400 mb-1">1 USD equals</div>
+        <div className="text-xs md:text-sm text-gray-400 mb-1">
+          1 USD equals
+        </div>
         <div className="text-xl md:text-2xl font-bold text-white">
           {currency.symbol}
           {formatCurrency(rate, currency.code)} {currency.code}
@@ -61,6 +72,7 @@ const CurrencyCard = ({ currency, rateData }) => {
             {formatCurrency(rate, currency.code)}
           </span>
         </div>
+
         <div className="flex justify-between">
           <span className="text-gray-400">24h Change:</span>
           <span className={color}>
@@ -80,11 +92,13 @@ const CurrencyCard = ({ currency, rateData }) => {
   );
 };
 
-
-
 const LiveChart = ({ data }) => {
   if (data.length < 2)
-    return <p className="text-gray-400 text-xl md:text-2xl">Loading chart...</p>;
+    return (
+      <p className="text-gray-400 text-xl md:text-2xl">
+        Loading chart...
+      </p>
+    );
 
   const width = 800;
   const height = 200;
@@ -106,7 +120,7 @@ const LiveChart = ({ data }) => {
     .join(" ");
 
   return (
-    <div className="bg-white/10 backdrop-blur-sm rounded-xl mt-7 p-5 border border-white/20 w-full">
+    <div className="bg-white/10 backdrop-blur-md rounded-xl mt-7 p-5 border border-white/20 w-full">
       <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
         USD to INR - Live Chart
       </h2>
@@ -115,12 +129,7 @@ const LiveChart = ({ data }) => {
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
           <defs>
             <pattern id="grid" width="40" height="30" patternUnits="userSpaceOnUse">
-              <path
-                d="M40 0 L0 0 0 30"
-                fill="none"
-                stroke="rgba(255,255,255,0.1)"
-                strokeWidth="1"
-              />
+              <path d="M40 0 L0 0 0 30" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
             </pattern>
           </defs>
 
@@ -138,25 +147,10 @@ const LiveChart = ({ data }) => {
   );
 };
 
-
-
-
 const Chart = () => {
-  const [rates, setRates] = useState({});
-  const [chartValues, setChartValues] = useState([]);
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [rates, setRates] = useState(() => generateRates());
+  const [chartValues, setChartValues] = useState([90.37]);
   const [loading, setLoading] = useState(false);
-
-  const generateRates = () => {
-    const newRates = {};
-    currencies.forEach(({ code, baseRate }) => {
-      const fluctuation = (Math.random() - 0.5) * 0.02;
-      const rate = baseRate * (1 + fluctuation);
-      const change = ((rate - baseRate) / baseRate) * 100;
-      newRates[code] = { rate, change };
-    });
-    return newRates;
-  };
 
   const updateRates = async () => {
     setLoading(true);
@@ -164,9 +158,12 @@ const Chart = () => {
 
     const newRates = generateRates();
     setRates(newRates);
-    setLastUpdated(new Date());
 
-    setChartValues((prev) => [...prev.slice(-49), newRates.INR.rate]);
+    setChartValues((prev) => {
+      const updated = [...prev, newRates.INR.rate];
+      return updated.length > 50 ? updated.slice(-50) : updated;
+    });
+
     setLoading(false);
   };
 
@@ -179,7 +176,6 @@ const Chart = () => {
   return (
     <div className="min-h-screen bg-black p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-
         <header className="text-center mb-10">
           <h1 className="mt-10 sm:mt-20 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
             <span className="text-red-500 font-serif">Live</span> Currency Exchange Rates
@@ -198,7 +194,6 @@ const Chart = () => {
           </button>
         </header>
 
-     
         <LiveChart data={chartValues} />
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
